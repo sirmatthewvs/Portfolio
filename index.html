@@ -37,9 +37,7 @@ h1{font:700 clamp(52px,8vw,104px)/.95 var(--display);letter-spacing:.01em;margin
 .areas div{background:var(--panel);border:3px solid var(--frame);padding:8px 14px;box-shadow:4px 4px 0 var(--shadow)}
 .areas dt{font-size:13px;color:var(--muted)}
 .areas dd{margin:0;font-weight:600}
-.statement{max-width:60ch;background:#1f080cdd;border-left:4px solid var(--gold);padding:4px 18px 8px}
-.statement h3{margin-top:10px}
-.statement p{margin:0 0 6px;font-size:16px}
+.bio{margin:0;font-size:15px;line-height:1.55}
 .steps{list-style:none;margin:0;padding:0;display:grid;gap:8px}
 .steps li{padding:8px 12px;background:var(--well);border-left:4px solid var(--frame)}
 .steps b{display:block;color:var(--gold);font-weight:600;font-size:15px}
@@ -152,10 +150,7 @@ footer{margin-top:40px;font-size:14px;color:var(--muted)}
         <div><dt>Área complementaria</dt><dd>Cámara y puesta en escena</dd></div>
       </dl>
     </div>
-    <div class="statement">
-      <h3>Declaración de perfil</h3>
-      <p>Soy Mateo Usuga Vargas (SirMatthew), desarrollador de videojuegos en Unity y estudiante de Diseño Interactivo en EAFIT, en Medellín. Mi área principal es acciones y gameplay: programo cómo se siente jugar, desde armar y pintar esculturas en Opossum Atelier hasta mover las palancas de un arco en C en realidad virtual. Mi área complementaria es cámara y puesta en escena: diseño cámaras que acompañan la acción sin estorbar. Itero con jugadores reales y cambio el diseño cuando las pruebas lo piden. En 2027 empiezo mi práctica como QA en PikPok.</p>
-    </div>
+
   </header>
 
   <main class="screen">
@@ -184,6 +179,8 @@ footer{margin-top:40px;font-size:14px;color:var(--muted)}
             <div class="portrait" id="portrait">MU</div>
             <p><strong>Mateo Usuga Vargas</strong>Unity, C#, VR y diseño de juegos</p>
           </div>
+          <h3>Declaración de perfil</h3>
+          <p class="bio">Soy Mateo Usuga Vargas (SirMatthew), desarrollador de videojuegos en Unity y estudiante de Diseño Interactivo en EAFIT, en Medellín. Mi área principal es acciones y gameplay: programo cómo se siente jugar, desde armar y pintar esculturas en Opossum Atelier hasta mover las palancas de un arco en C en realidad virtual. Mi área complementaria es cámara y puesta en escena: diseño cámaras que acompañan la acción sin estorbar. Itero con jugadores reales y cambio el diseño cuando las pruebas lo piden. En 2027 empiezo mi práctica como QA en PikPok.</p>
           <h3>Misión aceptada</h3>
           <p class="quest">Práctica profesional como QA en PikPok a partir de 2027.</p>
         </div>
@@ -224,7 +221,7 @@ const ITEMS = [
     name: "Opossum Atelier",
     kind: "Proyecto de Taller, en equipo",
     icon: "assets/icons/opossum-atelier.png",
-    media: "assets/media/Opossum-Atelier.mp4",
+    media: "assets/media/opossum-atelier.mp4",
     desc: "Juego cozy en el que una zarigüeya recorre de noche un pueblo colombiano recogiendo basura y, de día, la convierte en esculturas por encargo: las arma paso a paso, las limpia, las pinta y las entrega a sus clientes.",
     context: "Construir esculturas con basura tenía que ser expresivo, pero en las primeras pruebas abrumaba al jugador, hacía difícil calificar el resultado y no se sentía cozy.",
     decision: "Pasar de la construcción libre a una construcción guiada por recetas, paso a paso, y llevar la expresión del jugador al acabado: limpiar y pintar.",
@@ -238,10 +235,10 @@ const ITEMS = [
     fx: ["Demo jugable de cinco días, de cerca de una hora, con el ciclo completo de encargo, recolección, construcción, entrega y tienda.",
          "Las pruebas de limpieza y pintura fueron muy bien recibidas, y la demo le gustó mucho al asesor; ahora la pulimos para llevarla a eventos.",
          "Página publicada en Steam."],
-    stats: [["Rol","Director creativo y programador"],["Equipo","12 personas"],["Año","2026"],["Estado","Demo jugable, página en Steam"],
+    stats: [["Rol","Director creativo y programador"],["Equipo","8 personas, Anti Life Studios"],["Año","2026"],["Estado","Demo jugable, página en Steam"],
             ["Herramientas","Unity 6.3 (URP), Cinemachine, Input System, Unity Localization, GitHub"]],
     credits: [["Mío","Dirección creativa; programación de la casa y la mesa de trabajo (construcción guiada, limpieza, pintura, inventario, PC de la casa, tienda, entrega y ciclo de días); mejoras del modo nocturno; integración del vertical slice."],
-              ["Equipo","Modo nocturno de recolección (un compañero programador), modelos 3D y NPC (cinco artistas), audio (dos personas), pruebas (una persona) y marketing (una persona)."],
+              ["Equipo","Diego Andrés Peña: modo nocturno de recolección. Miguel Ramírez: splash art, toda la UI e iconos. Angela María Álvarez: biblia de arte, interior de la casa y animaciones idle y celebrar de los NPC. Valentina Zuluaga: fachada, calle y NPC (modelado, rig, texturas y caminar). Valentina Pérez: bocetos y modelos de las 10 basuras y los 3 skybox. Sebastián Hincapié: patio, pincel y aspiradora. Matías Ortiz: diseño de sonido."],
               ["Docente y terceros","Un profesor aportó cambios de game feel y guía del jugador. La idea de las recetas guiadas surgió del consejo de una persona de la industria."]],
     links: [["Ver en Steam","https://store.steampowered.com/app/5520060/Opossum_Atelier/"]],
     pix: "brush"
@@ -251,7 +248,7 @@ const ITEMS = [
     name: "Taw Breaker",
     kind: "Proyecto en equipo",
     icon: "assets/icons/taw-breaker.png",
-    media: "assets/media/taw-breaker.mp4",
+    media: "assets/media/taw-breaker.gif",
     desc: "Batallas de canicas por turnos. Lanzas tu canica con un gesto de flick, aprovechas un triángulo de elementos para ganar ventaja y sacas a los rivales del ring.",
     context: "Con el lanzamiento por flick funcionando, teníamos que decidir qué obstáculos poner en la arena, y cuántos, para que cada partida fuera divertida.",
     decision: "Descartar la rampa y añadir el martillo.",
@@ -273,7 +270,7 @@ const ITEMS = [
     name: "Nameless Woods",
     kind: "Proyecto en solitario",
     icon: "assets/icons/nameless-woods.png",
-    media: "assets/media/nameless-woods.mp4",
+    media: "assets/media/nameless-woods.gif",
     desc: "Juego de horror psicológico que desarrollé de principio a fin por mi cuenta.",
     context: "Quería que el bosque se sintiera libre para explorar, sin que el jugador se perdiera ni dejara de saber hacia dónde avanzar.",
     decision: "Guiar con el propio entorno: rastros de tierra en el suelo y pistas en las hojas que llevan al jugador sin decirle explícitamente a dónde ir.",
@@ -294,7 +291,7 @@ const ITEMS = [
     name: "Simulador VR de arco en C",
     kind: "Contrato profesional",
     icon: "assets/icons/arco-en-c.png",
-    media: "assets/media/arco.png",
+    media: "assets/media/arco-en-c.mp4",
     desc: "Simulación en realidad virtual de un arco en C, el equipo de rayos X que se usa durante cirugías, desarrollada por contrato con la Universidad EAFIT.",
     context: "El arco se mueve con palancas que el usuario agarra con las manos en realidad virtual. El movimiento tenía que sentirse físico y, al mismo tiempo, ser estable y predecible.",
     decision: "Resolver el movimiento de las palancas desde código, en lugar de depender del motor de físicas.",
@@ -390,7 +387,7 @@ const media = it => {
   const vid = /\.(mp4|webm)$/i.test(it.media);
   const el = vid ? `<video src="${it.media}" autoplay muted loop playsinline aria-label="Video de ${it.name}"></video>`
                  : `<img src="${it.media}" alt="Imagen de ${it.name}">`;
-  return `<div class="media" id="media">${el}<div class="ph"><span>El contenido está cargando</span><code>${it.media}</code></div></div>`;
+  return `<div class="media" id="media">${el}<div class="ph"><span>Agrega aquí una captura, GIF o video (16:9)</span><code>${it.media}</code></div></div>`;
 };
 
 const select = (i, byUser) => {
