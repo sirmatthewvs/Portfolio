@@ -332,7 +332,7 @@ const media = it => {
   const vid = /\.(mp4|webm)$/i.test(it.media);
   const el = vid ? `<video src="${it.media}" autoplay muted loop playsinline aria-label="Video de ${it.name}"></video>`
                  : `<img src="${it.media}" alt="Imagen de ${it.name}">`;
-  return `<div class="media" id="media">${el}<div class="ph"><span>Agrega aquí una captura, GIF o video (16:9)</span><code>${it.media}</code></div></div>`;
+  return `<div class="media" id="media">${el}<div class="ph"><span>El contenido está cargando</span><code>${it.media}</code></div></div>`;
 };
 
 const select = (i, byUser) => {
