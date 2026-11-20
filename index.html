@@ -31,10 +31,22 @@ a{color:var(--bone)}
 .wrap{max-width:1400px;margin:0 auto;padding:clamp(24px,4vw,56px) max(4vw,16px)}
 
 /* Cabecera */
-header{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px 32px;margin-bottom:clamp(24px,3vw,40px)}
+header{display:flex;flex-wrap:wrap;align-items:start;justify-content:space-between;gap:16px 32px;margin-bottom:clamp(24px,3vw,40px)}
 h1{font:700 clamp(52px,8vw,104px)/.95 var(--display);letter-spacing:.01em;margin:0;color:var(--bone);text-shadow:4px 4px 0 var(--frame)}
-.tag{margin:14px 0 0;max-width:62ch;color:var(--muted)}
-.tag b{color:var(--bone);font-weight:600}
+.areas{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0 0}
+.areas div{background:var(--panel);border:3px solid var(--frame);padding:8px 14px;box-shadow:4px 4px 0 var(--shadow)}
+.areas dt{font-size:13px;color:var(--muted)}
+.areas dd{margin:0;font-weight:600}
+.statement{max-width:60ch;background:#1f080cdd;border-left:4px solid var(--gold);padding:4px 18px 8px}
+.statement h3{margin-top:10px}
+.statement p{margin:0 0 6px;font-size:16px}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.steps li{padding:8px 12px;background:var(--well);border-left:4px solid var(--frame)}
+.steps b{display:block;color:var(--gold);font-weight:600;font-size:15px}
+.credits{margin:0 0 18px;font-size:15px}
+.credits dt{color:var(--gold);font-weight:600;margin-top:10px}
+.credits dd{margin:2px 0 0}
+.cols p{margin:0}
 .btn{font:600 15px/1 var(--ui);color:var(--bone);background:var(--panel);border:3px solid var(--frame);
   padding:12px 16px;min-height:44px;cursor:pointer;box-shadow:4px 4px 0 var(--shadow);text-decoration:none;display:inline-flex;align-items:center;gap:8px}
 .btn:hover{background:var(--frame)}
@@ -43,7 +55,7 @@ h1{font:700 clamp(52px,8vw,104px)/.95 var(--display);letter-spacing:.01em;margin
 .btn.main:hover{background:#bb2f3b}
 
 /* Ventanas */
-.screen{display:grid;grid-template-columns:330px minmax(0,1fr);grid-template-areas:"bag insp" "sheet insp";gap:24px;align-items:start}
+.screen{display:grid;grid-template-columns:330px minmax(0,1fr);grid-template-areas:"bag insp" "sheet insp";grid-template-rows:auto 1fr;gap:24px;align-items:start}
 .bag{grid-area:bag}.sheet{grid-area:sheet}#inspector{grid-area:insp}
 .panel{background:var(--panel);border:3px solid var(--frame);box-shadow:inset 0 0 0 3px var(--shadow),8px 8px 0 var(--shadow)}
 .bar{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:8px 16px;background:var(--frame);font:600 25px/1.15 var(--display);letter-spacing:.02em}
@@ -135,7 +147,14 @@ footer{margin-top:40px;font-size:14px;color:var(--muted)}
   <header>
     <div>
       <h1>Mateo Usuga</h1>
-      <p class="tag"><b>Game developer en Unity</b>: gameplay, físicas y realidad virtual. Estudiante de Diseño Interactivo en EAFIT, Medellín. En internet me encuentras como SirMatthew.</p>
+      <dl class="areas">
+        <div><dt>Área principal</dt><dd>Acciones y gameplay</dd></div>
+        <div><dt>Área complementaria</dt><dd>Cámara y puesta en escena</dd></div>
+      </dl>
+    </div>
+    <div class="statement">
+      <h3>Declaración de perfil</h3>
+      <p>Soy Mateo Usuga Vargas (SirMatthew), desarrollador de videojuegos en Unity y estudiante de Diseño Interactivo en EAFIT, en Medellín. Mi área principal es acciones y gameplay: programo cómo se siente jugar, desde armar y pintar esculturas en Opossum Atelier hasta mover las palancas de un arco en C en realidad virtual. Mi área complementaria es cámara y puesta en escena: diseño cámaras que acompañan la acción sin estorbar. Itero con jugadores reales y cambio el diseño cuando las pruebas lo piden. En 2027 empiezo mi práctica como QA en PikPok.</p>
     </div>
   </header>
 
@@ -203,27 +222,49 @@ const ITEMS = [
   {
     id: "opossum-atelier",
     name: "Opossum Atelier",
-    kind: "Proyecto de equipo",
+    kind: "Proyecto de Taller, en equipo",
     icon: "assets/icons/opossum-atelier.png",
-    media: "assets/media/Opossum-Atelier.mp4",
+    media: "assets/media/opossum-atelier.mp4",
     desc: "Juego cozy en el que una zarigüeya recorre de noche un pueblo colombiano recogiendo basura y, de día, la convierte en esculturas por encargo: las arma paso a paso, las limpia, las pinta y las entrega a sus clientes.",
-    stats: [["Rol","Director creativo y programador"],["Equipo","12 personas"],["Motor","Unity 6 (URP)"],["Plataforma","PC con soporte para control"],["Año","2026"],["Estado","Demo jugable, página en Steam"]],
-    fx: ["Dirigí la visión creativa de un equipo de programación, arte, audio, pruebas y marketing.",
-         "Programé la casa y el taller: construcción guiada, limpieza, pintura libre, tienda de mejoras y el ciclo de días.",
-         "Integré el modo nocturno de recolección en un vertical slice jugable."],
+    context: "Construir esculturas con basura tenía que ser expresivo, pero en las primeras pruebas abrumaba al jugador, hacía difícil calificar el resultado y no se sentía cozy.",
+    decision: "Pasar de la construcción libre a una construcción guiada por recetas, paso a paso, y llevar la expresión del jugador al acabado: limpiar y pintar.",
+    process: [
+      ["Versión 1", "Construcción libre: las piezas se pegaban a cualquier superficie usando puntos de agarre."],
+      ["Versión 2", "Construcción guiada, por consejo de una persona de la industria: un fantasma muestra un paso a la vez, sin puntos de agarre ni colocación libre."],
+      ["Versión 3", "Flujo armar, limpiar, pintar y entregar, con pintura libre y una paleta pequeña que se amplía en la tienda."],
+      ["Ajustes por feedback", "Salir de la mesa pasó de Q a Esc o B; la noche perdió el límite de tiempo y de peso; las ayudas de guía solo aparecen si el jugador se traba."]
+    ],
+    camera: "En la mesa de trabajo, la cámara queda fija frente a una base giratoria y solo permite zoom; descarté inclinarla porque no aparecía en nuestras referencias. La casa se explora en primera persona con Cinemachine, y al entregar la escultura la cámara no se fuerza: el jugador ve a los NPC celebrar moviéndose libremente.",
+    fx: ["Demo jugable de cinco días, de cerca de una hora, con el ciclo completo de encargo, recolección, construcción, entrega y tienda.",
+         "Las pruebas de limpieza y pintura fueron muy bien recibidas, y la demo le gustó mucho al asesor; ahora la pulimos para llevarla a eventos.",
+         "Página publicada en Steam."],
+    stats: [["Rol","Director creativo y programador"],["Equipo","12 personas"],["Año","2026"],["Estado","Demo jugable, página en Steam"],
+            ["Herramientas","Unity 6.3 (URP), Cinemachine, Input System, Unity Localization, GitHub"]],
+    credits: [["Mío","Dirección creativa; programación de la casa y la mesa de trabajo (construcción guiada, limpieza, pintura, inventario, PC de la casa, tienda, entrega y ciclo de días); mejoras del modo nocturno; integración del vertical slice."],
+              ["Equipo","Modo nocturno de recolección (un compañero programador), modelos 3D y NPC (cinco artistas), audio (dos personas), pruebas (una persona) y marketing (una persona)."],
+              ["Docente y terceros","Un profesor aportó cambios de game feel y guía del jugador. La idea de las recetas guiadas surgió del consejo de una persona de la industria."]],
     links: [["Ver en Steam","https://store.steampowered.com/app/5520060/Opossum_Atelier/"]],
     pix: "brush"
   },
   {
     id: "taw-breaker",
     name: "Taw Breaker",
-    kind: "Proyecto de equipo",
+    kind: "Proyecto en equipo",
     icon: "assets/icons/taw-breaker.png",
     media: "assets/media/taw-breaker.mp4",
     desc: "Batallas de canicas por turnos. Lanzas tu canica con un gesto de flick, aprovechas un triángulo de elementos para ganar ventaja y sacas a los rivales del ring.",
-    stats: [["Rol","Líder de desarrollo"],["Equipo","4 personas"],["Motor","Unity"],["Plataforma","Steam"],["Año","2026"],["Estado","Página en Steam, build en camino"]],
-    fx: ["Lideré el desarrollo y la división de roles del equipo.",
-         "Lanzamiento por flick, sistema elemental y mecánica de ring-out."],
+    context: "Con el lanzamiento por flick funcionando, teníamos que decidir qué obstáculos poner en la arena, y cuántos, para que cada partida fuera divertida.",
+    decision: "Descartar la rampa y añadir el martillo.",
+    process: [
+      ["Pruebas", "Probamos distintos obstáculos en la arena, entre ellos una rampa."],
+      ["Versión final", "Sacamos la rampa y añadimos el martillo."]
+    ],
+    fx: ["Al probar la versión final, a los jugadores les gustó mucho el martillo.",
+         "Página publicada en Steam; la build está en camino."],
+    stats: [["Rol","Líder de desarrollo"],["Equipo","4 personas"],["Año","2026"],["Estado","Página en Steam, build en camino"],
+            ["Herramientas","Unity 6 (URP), Input System, Netcode for GameObjects, TextMeshPro, GitHub con Git LFS"]],
+    credits: [["Mío","Liderazgo del desarrollo y división de roles del equipo."],
+              ["Equipo","Proyecto de cuatro personas; la elección de obstáculos fue una decisión conjunta."]],
     links: [["Ver en Steam","https://store.steampowered.com/app/5333920/Taw_Breaker/?l=latam"]],
     pix: "marble"
   },
@@ -233,10 +274,18 @@ const ITEMS = [
     kind: "Proyecto en solitario",
     icon: "assets/icons/nameless-woods.png",
     media: "assets/media/nameless-woods.mp4",
-    desc: "Juego de horror psicológico que desarrollé de principio a fin por mi cuenta, apoyándome en algunos assets de librerías en línea.",
-    stats: [["Rol","Todo el desarrollo"],["Equipo","Solo yo"],["Plataforma","itch.io"],["Lanzamiento","13 de marzo de 2026"],["Estado","Publicado"]],
-    fx: ["Cerca de 1.000 descargas en itch.io.",
+    desc: "Juego de horror psicológico que desarrollé de principio a fin por mi cuenta.",
+    context: "Quería que el bosque se sintiera libre para explorar, sin que el jugador se perdiera ni dejara de saber hacia dónde avanzar.",
+    decision: "Guiar con el propio entorno: rastros de tierra en el suelo y pistas en las hojas que llevan al jugador sin decirle explícitamente a dónde ir.",
+    process: [
+      ["Problema", "Un bosque abierto daba libertad, pero podía desorientar al jugador."],
+      ["Solución", "Añadí rastros de tierra y pistas en hojas como guía dentro del mundo."]
+    ],
+    fx: ["Publicado en itch.io el 13 de marzo de 2026, con cerca de 1.000 descargas.",
          "Apareció en un video de YouTube con unas 250.000 vistas."],
+    stats: [["Rol","Todo el desarrollo"],["Equipo","Solo yo"],["Lanzamiento","13 de marzo de 2026"],["Estado","Publicado"]],
+    credits: [["Mío","Todo el desarrollo del juego."],
+              ["Terceros","Algunos assets tomados de librerías en línea."]],
     links: [["Jugar en itch.io","https://sirmatthewv.itch.io/nameless-woods"]],
     pix: "tree"
   },
@@ -247,10 +296,19 @@ const ITEMS = [
     icon: "assets/icons/arco-en-c.png",
     media: "assets/media/arco.png",
     desc: "Simulación en realidad virtual de un arco en C, el equipo de rayos X que se usa durante cirugías, desarrollada por contrato con la Universidad EAFIT.",
-    stats: [["Rol","Programador VR"],["Cliente","Universidad EAFIT"],["Fechas","Septiembre 2023 a enero 2024"],["Estado","Licenciado comercialmente"]],
-    fx: ["Programé las físicas y el movimiento del arco.",
-         "Desarrollé parte del sistema de fotos.",
-         "El simulador se licenció a SkillsUp a través de SimDesign."],
+    context: "El arco se mueve con palancas que el usuario agarra con las manos en realidad virtual. El movimiento tenía que sentirse físico y, al mismo tiempo, ser estable y predecible.",
+    decision: "Resolver el movimiento de las palancas desde código, en lugar de depender del motor de físicas.",
+    process: [
+      ["Versión 1", "Constraints."],
+      ["Versión 2", "Rigidbodies."],
+      ["Versión 3", "Movimiento programado por código, que resultó la opción más sencilla de controlar."]
+    ],
+    fx: ["Mi primer contrato profesional.",
+         "El simulador se licenció comercialmente a SkillsUp a través de SimDesign."],
+    stats: [["Rol","Programador VR"],["Cliente","Universidad EAFIT"],["Fechas","Septiembre 2023 a enero 2024"],["Estado","Licenciado comercialmente"],
+            ["Herramientas","Unity, realidad virtual"]],
+    credits: [["Mío","Físicas y movimiento del arco y de sus palancas; parte del sistema de fotos."],
+              ["Equipo","El resto del simulador no es de mi autoría."]],
     links: [],
     pix: "carm"
   }
@@ -341,17 +399,27 @@ const select = (i, byUser) => {
   slots.forEach((b,k) => b.setAttribute("aria-pressed", k === i));
   placeCursor();
   document.getElementById("slotno").textContent = `Ranura ${i+1}`;
+  const rows = it.stats.map(([k,v]) => `<tr><th scope="row">${k}</th><td>${v}</td></tr>`).join("");
   detail.innerHTML = `${media(it)}
     <div class="head">${icon(it).replace('class="ico"','class="ico pop"')}<div><h2>${it.name}</h2><p class="kind">${it.kind}</p></div></div>
+    <p class="desc">${it.desc}</p>
     <div class="cols">
       <div>
-        <p class="desc">${it.desc}</p>
-        <h3>Efectos</h3>
+        <h3>Contexto</h3>
+        <p>${it.context}</p>
+        <h3>Decisión clave</h3>
+        <p class="quest">${it.decision}</p>
+        <h3>Proceso y versiones</h3>
+        <ol class="steps">${it.process.map(([v,t]) => `<li><b>${v}</b>${t}</li>`).join("")}</ol>
+        ${it.camera ? `<h3>Cámara y puesta en escena</h3><p>${it.camera}</p>` : ""}
+        <h3>Resultado</h3>
         <ul class="fx">${it.fx.map(f => `<li>${f}</li>`).join("")}</ul>
       </div>
       <div>
         <h3>Estadísticas</h3>
-        <table class="stats"><tbody>${it.stats.map(([k,v]) => `<tr><th scope="row">${k}</th><td>${v}</td></tr>`).join("")}</tbody></table>
+        <table class="stats"><tbody>${rows}</tbody></table>
+        <h3>Créditos</h3>
+        <dl class="credits">${it.credits.map(([k,v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("")}</dl>
         ${it.links.length ? `<div class="links">${it.links.map(([l,u],k) => `<a class="btn${k?"":" main"}" href="${u}" target="_blank" rel="noopener">${l}</a>`).join("")}</div>` : ""}
       </div>
     </div>`;
